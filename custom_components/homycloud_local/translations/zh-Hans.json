@@ -1,0 +1,28 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "HomyCloud",
+        "description": "宏云智能本地 DDS 接入。开发版本默认只读；启用控制前请先完成依赖安装、设备确认与迁移计划。",
+        "data": {
+          "inventory_path": "私有设备清单路径（相对于 HA 配置目录）",
+          "enable_control": "启用设备控制（默认关闭）"
+        }
+      }
+    },
+    "error": {
+      "invalid_inventory": "设备清单无法读取或格式不正确"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "HomyCloud",
+        "description": "启用控制会允许通过本集成操作真实设备。关闭后仍继续读取状态。",
+        "data": {
+          "enable_control": "启用设备控制"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "dependency_revision": "f9df068b914c9f659d66f1fff8a83927b90b24ef",
+  "exit_code": 0,
+  "stdout": "{\"python\": \"3.14.9\", \"read_only\": true, \"control_writer_created\": false, \"configured_devices\": 27, \"responding_devices\": 27, \"attribute_count\": 101}\n",
+  "stderr": "",
+  "existing_services_unchanged": true
+}

@@ -1,0 +1,23 @@
+{
+  "dds_installed": false,
+  "results": [
+    {
+      "trial": 1,
+      "exit_code": 0,
+      "stdout": "baseline AWS CRT import OK\n",
+      "stderr": "WARNING: Your kernel does not support swap limit capabilities or the cgroup is not mounted. Memory limited without swap.\n"
+    },
+    {
+      "trial": 2,
+      "exit_code": 0,
+      "stdout": "baseline AWS CRT import OK\n",
+      "stderr": "WARNING: Your kernel does not support swap limit capabilities or the cgroup is not mounted. Memory limited without swap.\n"
+    },
+    {
+      "trial": 3,
+      "exit_code": 0,
+      "stdout": "baseline AWS CRT import OK\n",
+      "stderr": "WARNING: Your kernel does not support swap limit capabilities or the cgroup is not mounted. Memory limited without swap.\n"
+    }
+  ]
+}

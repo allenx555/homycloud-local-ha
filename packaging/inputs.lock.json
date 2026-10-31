@@ -1,0 +1,304 @@
+{
+  "base_image": "ghcr.io/home-assistant/home-assistant@sha256:23f4dfbb69ce76315dbc4de7915504f1c2dcecd7ca2648113a493a385972e133",
+  "target": "cp314-musllinux_1_2_aarch64",
+  "inputs": [
+    {
+      "filename": "cyclonedds-source.tar.gz",
+      "sha256": "c25d46075ad6b5cee564bda9e5f49509e9a6dbb1a8b858e708eb360d335cf973",
+      "url": "https://codeload.github.com/eclipse-cyclonedds/cyclonedds/tar.gz/refs/tags/11.0.1"
+    },
+    {
+      "filename": "linux-headers-7.0.0-r1.apk",
+      "sha256": "d61656e81116040ebac0bc8d9046a3ba97f01a00ee085809103576e8a437468f",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/edge/main/aarch64/linux-headers-7.0.0-r1.apk"
+    },
+    {
+      "filename": "patchelf-0.18.0-r3.apk",
+      "sha256": "a0a6c0cf0de3818beb8dbd633e38033b71927cbb5bfc6ad5bbacdff1f27798ce",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/edge/main/aarch64/patchelf-0.18.0-r3.apk"
+    },
+    {
+      "filename": "cyclonedds-python-source.tar.gz",
+      "url": "https://files.pythonhosted.org/packages/83/52/f501db026eff5aed63598c51b58a09ee45cf90306791cbf7c05f1a30ebf9/cyclonedds-11.0.1.tar.gz",
+      "sha256": "487cdd9e3dbe3bc6f66c3318c45979f4015bb9d32d5dfcb9bb4a67376176a526"
+    },
+    {
+      "filename": "cyclonedds-python-pr323.patch",
+      "url": "https://github.com/eclipse-cyclonedds/cyclonedds-python/pull/323.patch",
+      "sha256": "1e420ea8d8ac05b58e20e849edbcf22189e41ac8633f4b7cb3abc9eb0d325f84"
+    },
+    {
+      "filename": "cyclonedds-python-pr327.patch",
+      "url": "https://github.com/eclipse-cyclonedds/cyclonedds-python/pull/327.patch",
+      "sha256": "099a85334867aa1f6fa4ccb51714cc03d117981b7be70045f57277850ff50ff3"
+    }
+  ],
+  "wheels": [
+    {
+      "filename": "auditwheel-6.8.2-py3-none-any.whl",
+      "sha256": "05fd2dd4b743217cd5f66066adc95b03a079424b1f0a878ad1e40fe2cdea4704",
+      "url": "https://files.pythonhosted.org/packages/78/33/475398f5eb069aa20910ec8486bdc62a87deadd8229494cbc80a1ddbf740/auditwheel-6.8.2-py3-none-any.whl"
+    },
+    {
+      "filename": "click-8.5.0-py3-none-any.whl",
+      "sha256": "255bc9599cf7748b4b1a446ccc735421bd08a2ae529a8b88597d3de5664ee360",
+      "url": "https://files.pythonhosted.org/packages/58/50/6c0d534c5f134586a8e1ba4e330569e32f057e33372ae556463212fb4cd3/click-8.5.0-py3-none-any.whl"
+    },
+    {
+      "filename": "colorama-0.4.6-py2.py3-none-any.whl",
+      "sha256": "4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6",
+      "url": "https://files.pythonhosted.org/packages/d1/d6/3965ed04c63042e047cb6a3e6ed1a63a35087b6a609aa3a15ed8ac56c221/colorama-0.4.6-py2.py3-none-any.whl"
+    },
+    {
+      "filename": "markdown_it_py-4.2.0-py3-none-any.whl",
+      "sha256": "9f7ebbcd14fe59494226453aed97c1070d83f8d24b6fc3a3bcf9a38092641c4a",
+      "url": "https://files.pythonhosted.org/packages/b3/81/4da04ced5a082363ecfa159c010d200ecbd959ae410c10c0264a38cac0f5/markdown_it_py-4.2.0-py3-none-any.whl"
+    },
+    {
+      "filename": "mdurl-0.1.2-py3-none-any.whl",
+      "sha256": "84008a41e51615a49fc9966191ff91509e3c40b939176e643fd50a5c2196b8f8",
+      "url": "https://files.pythonhosted.org/packages/b3/38/89ba8ad64ae25be8de66a6d463314cf1eb366222074cfda9ee839c56a4b4/mdurl-0.1.2-py3-none-any.whl"
+    },
+    {
+      "filename": "packaging-26.3-py3-none-any.whl",
+      "sha256": "d7193f7c8e4e93f444fde0262bf90af30e16fa0ad0ad44cb553c87339b23cd1c",
+      "url": "https://files.pythonhosted.org/packages/63/34/ba1c580383c9eada3711951fef0795c80b829a078d72188184bcab9dd527/packaging-26.3-py3-none-any.whl"
+    },
+    {
+      "filename": "pip-26.2.2-py3-none-any.whl",
+      "sha256": "fd7f4dfa8190e014013b9f08f3e973f4e4c26ffd179a204895533a7254813a70",
+      "url": "https://files.pythonhosted.org/packages/3f/06/3e4420302363fbb71be3c7f35ce042f54bfca330e3e66b3a2e3c4cca579f/pip-26.2.2-py3-none-any.whl"
+    },
+    {
+      "filename": "pyelftools-0.33-py3-none-any.whl",
+      "sha256": "f215ad5f47d3f1373a21496a6c9e0707c622840d0622f23ff7ce08678b020036",
+      "url": "https://files.pythonhosted.org/packages/46/2a/f9697576603dae937727827505a6126a066affb227034e77e6f9068910da/pyelftools-0.33-py3-none-any.whl"
+    },
+    {
+      "filename": "pygments-2.21.0-py3-none-any.whl",
+      "sha256": "2363c69b61c4a97c838da3b130dcd6468f4848992b21a82f2a63ec34377137d9",
+      "url": "https://files.pythonhosted.org/packages/71/46/17f022dd3e953bf20a04a028a21ec746d942f8d2af30fa0f124fa0e6a684/pygments-2.21.0-py3-none-any.whl"
+    },
+    {
+      "filename": "rich-15.0.0-py3-none-any.whl",
+      "sha256": "33bd4ef74232fb73fe9279a257718407f169c09b78a87ad3d296f548e27de0bb",
+      "url": "https://files.pythonhosted.org/packages/82/3b/64d4899d73f91ba49a8c18a8ff3f0ea8f1c1d75481760df8c68ef5235bf5/rich-15.0.0-py3-none-any.whl"
+    },
+    {
+      "filename": "rich_click-1.9.9-py3-none-any.whl",
+      "sha256": "365e7a9d0adb42e41ea832a0a12e02c44c079a26536dee688125eb9814f97274",
+      "url": "https://files.pythonhosted.org/packages/b5/51/b2b91aec091e86bc961e5164f00207d89f133cc82b5ddad541d2132ea819/rich_click-1.9.9-py3-none-any.whl"
+    },
+    {
+      "filename": "setuptools-84.2.1-py3-none-any.whl",
+      "sha256": "ca140b45d5325a9478f880e351484f62fef15f336462e449ca0c03c873d589c2",
+      "url": "https://files.pythonhosted.org/packages/ef/55/6dc6d6bb953bdfc52519a0059592c52b6e3b8ad51cf8256dffceb55b0610/setuptools-84.2.1-py3-none-any.whl"
+    },
+    {
+      "filename": "wheel-0.48.0-py3-none-any.whl",
+      "sha256": "3217dcc807155e45db462d7ef2431f5ddda0d7273b700d05a67b271ceb1287ab",
+      "url": "https://files.pythonhosted.org/packages/2e/29/69cfbb602cd91690c55d38ba9fe53e6a7e76a6fa647bf38f19c138d25449/wheel-0.48.0-py3-none-any.whl"
+    }
+  ],
+  "apk_packages": [
+    {
+      "filename": "acl-libs-2.3.2-r1.apk",
+      "sha256": "5bfce1fc46a3625268a7a60c10b5680aa846534d98856a108e692824a1f1b710",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/edge/main/aarch64/acl-libs-2.3.2-r1.apk",
+      "bundle": "build-apks.tar"
+    },
+    {
+      "filename": "binutils-2.45.1-r1.apk",
+      "sha256": "bac4a00e73296dfebf5f587c2b304b7d110e7de658cd2b05491f87c2b228420c",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/edge/main/aarch64/binutils-2.45.1-r1.apk",
+      "bundle": "build-apks.tar"
+    },
+    {
+      "filename": "cmake-4.2.3-r0.apk",
+      "sha256": "fbc19c4efe1a12dbcdb646952e9dc1ee2f8bf68feb6ed17fdf320f34bba252ef",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/edge/main/aarch64/cmake-4.2.3-r0.apk",
+      "bundle": "build-apks.tar"
+    },
+    {
+      "filename": "gcc-15.2.0-r5.apk",
+      "sha256": "ff3fecfc32c9a1bed4a47a32ccfee6f6f575708258f912c218dce8ed0d892221",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/edge/main/aarch64/gcc-15.2.0-r5.apk",
+      "bundle": "build-apks.tar"
+    },
+    {
+      "filename": "gmp-6.3.0-r4.apk",
+      "sha256": "4dab6e86b850fe1b5bc0cf2fac17efa4d7f648bea44f3d9019694cc1e1cb12b7",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/edge/main/aarch64/gmp-6.3.0-r4.apk",
+      "bundle": "build-apks.tar"
+    },
+    {
+      "filename": "isl25-0.25-r2.apk",
+      "sha256": "5209569eb853a98e72f3d78ae575c66708e1d628b8cb2131eb870b3ba1ef0950",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/edge/main/aarch64/isl25-0.25-r2.apk",
+      "bundle": "build-apks.tar"
+    },
+    {
+      "filename": "jansson-2.15.0-r0.apk",
+      "sha256": "a13822f5ca1772cced4bb7d3d178ec5dee770d8accba5b4816b2ddc413e6f055",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/edge/main/aarch64/jansson-2.15.0-r0.apk",
+      "bundle": "build-apks.tar"
+    },
+    {
+      "filename": "libarchive-3.8.10-r0.apk",
+      "sha256": "506ffede86c7af41e7256dbbb98af368243fc9a9c9f61d19804c4c3047c8e0b1",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/edge/main/aarch64/libarchive-3.8.10-r0.apk",
+      "bundle": "build-apks.tar"
+    },
+    {
+      "filename": "libatomic-15.2.0-r5.apk",
+      "sha256": "31a45fec053c43a006370f83238f16f959838a9a703fbf26bfd1a36da4f538b2",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/edge/main/aarch64/libatomic-15.2.0-r5.apk",
+      "bundle": "build-apks.tar"
+    },
+    {
+      "filename": "libbz2-1.0.8-r6.apk",
+      "sha256": "28cb76bb6d11d2a55c3061b5fcb2ab84996412a248b2c9fe52bb710d0a2a84e7",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/edge/main/aarch64/libbz2-1.0.8-r6.apk",
+      "bundle": "build-apks.tar"
+    },
+    {
+      "filename": "libcrypto3-3.5.9-r0.apk",
+      "sha256": "2676a2b0b6e23ea2edccf3ee982b9842a665d52603d047de3d0a185dc316d983",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/edge/main/aarch64/libcrypto3-3.5.9-r0.apk",
+      "bundle": "build-apks.tar"
+    },
+    {
+      "filename": "libexpat-2.9.0-r0.apk",
+      "sha256": "7128bfe18b8a315b9cf90ddf0beffeee454648ae72ff7898ff7d7b09803a559d",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/edge/main/aarch64/libexpat-2.9.0-r0.apk",
+      "bundle": "build-apks.tar"
+    },
+    {
+      "filename": "libgcc-15.2.0-r5.apk",
+      "sha256": "369aaa6e9d099a737bad6dd3e6c2fe7bb1547ca26d22b94ee0411228f709b403",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/edge/main/aarch64/libgcc-15.2.0-r5.apk",
+      "bundle": "build-apks.tar"
+    },
+    {
+      "filename": "libgcc-static-15.2.0-r5.apk",
+      "sha256": "2ec3dc4be953d842cc51193248367d86829ed699a1ed094fb5149b1b3fc62919",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/edge/main/aarch64/libgcc-static-15.2.0-r5.apk",
+      "bundle": "build-apks.tar"
+    },
+    {
+      "filename": "libgomp-15.2.0-r5.apk",
+      "sha256": "90576a8899c560d3983b8ac8442b5b75957a917bc1c4e950e005945080f8682f",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/edge/main/aarch64/libgomp-15.2.0-r5.apk",
+      "bundle": "build-apks.tar"
+    },
+    {
+      "filename": "libssl3-3.5.9-r0.apk",
+      "sha256": "20ac252b276d73f2c69c1d25f84537c7fba81caefc026c6be1094b394af2082e",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/edge/main/aarch64/libssl3-3.5.9-r0.apk",
+      "bundle": "build-apks.tar"
+    },
+    {
+      "filename": "libstdc++-15.2.0-r5.apk",
+      "sha256": "2302e766d4e4926038ec166ecb85837ee884576115236ddb565e3a5fca4a11d7",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/edge/main/aarch64/libstdc++-15.2.0-r5.apk",
+      "bundle": "build-apks.tar"
+    },
+    {
+      "filename": "libuv-1.52.1-r0.apk",
+      "sha256": "64e29a6c58f8375bc9cf83d57e0913e6743746cfc60851b1cb12cd572f5924f3",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/edge/main/aarch64/libuv-1.52.1-r0.apk",
+      "bundle": "build-apks.tar"
+    },
+    {
+      "filename": "lz4-libs-1.10.0-r1.apk",
+      "sha256": "af6cbe553adda941e04ac40cf0123455b714d65392472389113e7d6dcebbd8d8",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/edge/main/aarch64/lz4-libs-1.10.0-r1.apk",
+      "bundle": "build-apks.tar"
+    },
+    {
+      "filename": "make-4.4.1-r4.apk",
+      "sha256": "0a2c6c3fa0d90b652bbaeac362d1bfe54b75aae57631a6b448826f8b51c85170",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/edge/main/aarch64/make-4.4.1-r4.apk",
+      "bundle": "build-apks.tar"
+    },
+    {
+      "filename": "mpc1-1.3.1-r1.apk",
+      "sha256": "c4e03923cf1b958ba0d3665196f521a00fb091132e79c39493298019fb59ae60",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/edge/main/aarch64/mpc1-1.3.1-r1.apk",
+      "bundle": "build-apks.tar"
+    },
+    {
+      "filename": "mpfr4-4.2.2-r0.apk",
+      "sha256": "81cb276c1e050138fed90c8f1ef584cf5bfce26739733753fce138fc0a092b35",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/edge/main/aarch64/mpfr4-4.2.2-r0.apk",
+      "bundle": "build-apks.tar"
+    },
+    {
+      "filename": "musl-1.2.6-r3.apk",
+      "sha256": "2e17864102278d9049c3a56f1bceed9e8cf287065617e579325123443daed8a5",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/edge/main/aarch64/musl-1.2.6-r3.apk",
+      "bundle": "build-apks.tar"
+    },
+    {
+      "filename": "musl-dev-1.2.6-r3.apk",
+      "sha256": "45afe0a9f78de3402b6b5d11f5153ed955bf59d59b45344d9c3fed9f4bbf2f66",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/edge/main/aarch64/musl-dev-1.2.6-r3.apk",
+      "bundle": "build-apks.tar"
+    },
+    {
+      "filename": "rhash-libs-1.4.6-r0.apk",
+      "sha256": "7e48c2bbea516c1b97887e6d9cb50e772de9e61e0aa31c4e042cc34df07a3016",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/edge/main/aarch64/rhash-libs-1.4.6-r0.apk",
+      "bundle": "build-apks.tar"
+    },
+    {
+      "filename": "xz-libs-5.8.4-r0.apk",
+      "sha256": "9be375832e747afe14f98e400e8b55d8f6fde25e41663090c81600628daab093",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/edge/main/aarch64/xz-libs-5.8.4-r0.apk",
+      "bundle": "build-apks.tar"
+    },
+    {
+      "filename": "zlib-1.3.2-r1.apk",
+      "sha256": "1f77a542ac6634761b9fe38d8bdca19b154071dcfa25432e73f2bc8a0740a33f",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/edge/main/aarch64/zlib-1.3.2-r1.apk",
+      "bundle": "build-apks.tar"
+    },
+    {
+      "filename": "zstd-libs-1.5.7-r2.apk",
+      "sha256": "2bb5136c89f5b0bbe1554c8915a3b520d5aa63ae2a51d4d821eb81698db5a818",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/edge/main/aarch64/zstd-libs-1.5.7-r2.apk",
+      "bundle": "build-apks.tar"
+    },
+    {
+      "filename": "g++-15.2.0-r5.apk",
+      "sha256": "dc16babd6fdd7154ece263ca625ff832b03528d58f5060f9e92ca3b0bc0c079a",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/edge/main/aarch64/g++-15.2.0-r5.apk",
+      "bundle": "build-cxx-apks.tar"
+    },
+    {
+      "filename": "libstdc++-dev-15.2.0-r5.apk",
+      "sha256": "8385c811d93b64ee1877005a5473cde8ebabe82d346301f2b153ff8cb6a71510",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/edge/main/aarch64/libstdc++-dev-15.2.0-r5.apk",
+      "bundle": "build-cxx-apks.tar"
+    }
+  ],
+  "format": 2,
+  "build_options": {
+    "build_type": "Release",
+    "optimization": "O2",
+    "lto": false,
+    "ssl": false,
+    "security": false,
+    "idlc": false
+  },
+  "python_source": {
+    "base": "11.0.1 PyPI sdist",
+    "backports": [
+      323,
+      327
+    ],
+    "include": "cyclonedds/*",
+    "native_extension_source": "unmodified stable 11.0.1",
+    "local_version": "11.0.1+homycloud.2"
+  }
+}

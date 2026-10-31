@@ -1,0 +1,9 @@
+{
+  "exit_code": 0,
+  "bundle_sha256": "94810e1ccb0d940ce4b28e3edc14ab91fa28407bc3d890a3f46b55d51a9ad716",
+  "network": "none",
+  "optional_aws_crt_disabled_in_ha_fixture": true,
+  "production_config_modified": false,
+  "stdout": "{\n  \"filename\": \"candidate.zip\",\n  \"sha256\": \"94810e1ccb0d940ce4b28e3edc14ab91fa28407bc3d890a3f46b55d51a9ad716\",\n  \"size_bytes\": 3147075,\n  \"files_verified\": 36,\n  \"installation_performed\": false\n}\nProcessing ./wheels/cyclonedds-11.0.1+homycloud.2-cp314-cp314-musllinux_1_2_aarch64.whl\nInstalling collected packages: cyclonedds\nSuccessfully installed cyclonedds-11.0.1+homycloud.2\n{\"version\": \"11.0.1+homycloud.2\", \"python\": \"3.14.9\", \"bundled_library\": \"libddsc-e0656f31.so.11.0.1\", \"bundled_library_verified\": true, \"types_constructed\": 4}\n{\"version\": \"11.0.1+homycloud.2\", \"python\": \"3.14.9\", \"bundled_library\": \"libddsc-e0656f31.so.11.0.1\", \"bundled_library_verified\": true, \"types_constructed\": 4}\n{\"ha_dependency_hook_verified\": true, \"imported_from_config_deps\": true}\n",
+  "stderr": "WARNING: Your kernel does not support swap limit capabilities or the cgroup is not mounted. Memory limited without swap.\nWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.\n"
+}

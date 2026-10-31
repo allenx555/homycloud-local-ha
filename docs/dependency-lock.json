@@ -1,0 +1,14 @@
+{
+  "cyclonedds_python_repository": "https://github.com/eclipse-cyclonedds/cyclonedds-python",
+  "native_library_version": "11.0.1",
+  "tested_python": "3.14.9",
+  "tested_platform": "aarch64-linux-musl",
+  "build_status": "Built from stable source plus exact compatibility backports; isolated import, DDS query and HA local-deps hook verified; deployment pending",
+  "python_base": "11.0.1 PyPI sdist",
+  "python_backport_prs": [
+    323,
+    327
+  ],
+  "runtime_version": "11.0.1+homycloud.2",
+  "wheel_sha256": "3d50e31c50a00912253f6f2da3d9e12e000a6c9c9edf4a352065f1eeed2537c1"
+}

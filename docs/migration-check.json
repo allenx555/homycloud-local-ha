@@ -1,0 +1,10 @@
+{
+  "read_only": true,
+  "summary": {
+    "ready": 94,
+    "missing": 0,
+    "conflict": 0
+  },
+  "entities": 94,
+  "registry_writes": 0
+}

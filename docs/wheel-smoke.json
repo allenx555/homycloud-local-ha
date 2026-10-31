@@ -1,0 +1,9 @@
+{
+  "exit_code": 134,
+  "wheel": "cyclonedds-11.0.1+homycloud.2-cp314-cp314-musllinux_1_2_aarch64.whl",
+  "sha256": "3d50e31c50a00912253f6f2da3d9e12e000a6c9c9edf4a352065f1eeed2537c1",
+  "stdout": "Processing /artifacts/wheels/cyclonedds-11.0.1+homycloud.2-cp314-cp314-musllinux_1_2_aarch64.whl\nInstalling collected packages: cyclonedds\nSuccessfully installed cyclonedds-11.0.1+homycloud.2\n{\"version\": \"11.0.1+homycloud.2\", \"python\": \"3.14.9\", \"bundled_library\": \"libddsc-e0656f31.so.11.0.1\", \"bundled_library_verified\": true, \"types_constructed\": 4}\n{\n  \"read_only\": true,\n  \"installation_performed\": false,\n  \"wheel\": {\n    \"filename\": \"cyclonedds-11.0.1+homycloud.2-cp314-cp314-musllinux_1_2_aarch64.whl\",\n    \"version\": \"11.0.1+homycloud.2\",\n    \"tags\": [\n      \"cp314-cp314-musllinux_1_2_aarch64\"\n    ],\n    \"sha256\": \"3d50e31c50a00912253f6f2da3d9e12e000a6c9c9edf4a352065f1eeed2537c1\",\n    \"bundled_libraries\": [\n      \"cyclonedds.libs/libddsc-e0656f31.so.11.0.1\"\n    ]\n  },\n  \"dependency_target\": \"/runtime/config/deps/lib/python3.14/site-packages\",\n  \"python\": \"3.14.9\"\n}\n{\"python\": \"3.14.9\", \"read_only\": true, \"control_writer_created\": false, \"configured_devices\": 27, \"responding_devices\": 27, \"attribute_count\": 101}\n",
+  "stderr": "WARNING: Your kernel does not support swap limit capabilities or the cgroup is not mounted. Memory limited without swap.\nWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.\nAborted\n",
+  "old_runtime_mounted": false,
+  "physical_control_commands": 0
+}

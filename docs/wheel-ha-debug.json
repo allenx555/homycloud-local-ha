@@ -1,0 +1,5 @@
+{
+  "exit_code": 0,
+  "stdout": "Processing /artifacts/wheels/cyclonedds-11.0.1+homycloud.2-cp314-cp314-musllinux_1_2_aarch64.whl\nInstalling collected packages: cyclonedds\nSuccessfully installed cyclonedds-11.0.1+homycloud.2\n{\"name\": \"HomyCloud\", \"platforms\": {\"switch\": 59, \"cover\": 4, \"climate\": 6, \"sensor\": 15, \"number\": 5, \"select\": 5}, \"unique_entities\": 94, \"online_devices\": 27, \"readonly_control_rejected\": true}\n{\"worker_stopped\": true}\n",
+  "stderr": "WARNING: Your kernel does not support swap limit capabilities or the cgroup is not mounted. Memory limited without swap.\nWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.\n"
+}

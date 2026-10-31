@@ -1,0 +1,28 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "HomyCloud",
+        "description": "Local DDS integration for HomyCloud devices. This development build defaults to read-only. Prepare native dependencies and a migration plan before enabling control.",
+        "data": {
+          "inventory_path": "Private inventory path relative to the HA configuration directory",
+          "enable_control": "Enable device control (off by default)"
+        }
+      }
+    },
+    "error": {
+      "invalid_inventory": "The inventory could not be read or has an invalid format"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "HomyCloud",
+        "description": "Enabling control allows this integration to operate physical devices. Read-only mode continues to receive states.",
+        "data": {
+          "enable_control": "Enable device control"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "exit_code": 0,
+  "stdout": "Processing /artifacts/wheels/cyclonedds-11.0.1+homycloud.2-cp314-cp314-musllinux_1_2_aarch64.whl\nInstalling collected packages: cyclonedds\nSuccessfully installed cyclonedds-11.0.1+homycloud.2\n{\"round\": 1, \"configured_devices\": 27, \"responding_devices\": 27, \"active\": {\"VmRSS\": 31980, \"Threads\": 6}, \"closed\": {\"VmRSS\": 31684, \"Threads\": 1}}\n{\"round\": 2, \"configured_devices\": 27, \"responding_devices\": 27, \"active\": {\"VmRSS\": 31996, \"Threads\": 6}, \"closed\": {\"VmRSS\": 31672, \"Threads\": 1}}\n{\"round\": 3, \"configured_devices\": 27, \"responding_devices\": 27, \"active\": {\"VmRSS\": 32004, \"Threads\": 6}, \"closed\": {\"VmRSS\": 31704, \"Threads\": 1}}\n{\"read_only\": true, \"baseline\": {\"VmRSS\": 14600, \"Threads\": 1}, \"rounds_completed\": 3}\n",
+  "stderr": "WARNING: Your kernel does not support swap limit capabilities or the cgroup is not mounted. Memory limited without swap.\nWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.\n",
+  "physical_control_commands": 0
+}

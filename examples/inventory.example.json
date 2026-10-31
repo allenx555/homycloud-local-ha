@@ -1,0 +1,18 @@
+{
+  "partition": "REPLACE_WITH_PRIVATE_PARTITION",
+  "dds_xml": "<CycloneDDS><Domain Id=\"2031\"><General><AllowMulticast>true</AllowMulticast></General></Domain></CycloneDDS>",
+  "devices": [
+    {
+      "id": "00000000000000000000000000000001",
+      "name": "示例开关",
+      "model": "示例型号",
+      "kind": "switch",
+      "entities": {
+        "switch_1": {
+          "component": "switch",
+          "name": "第一路"
+        }
+      }
+    }
+  ]
+}

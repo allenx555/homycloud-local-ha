@@ -1,0 +1,26 @@
+{
+  "version": "11.0.1+homycloud.2",
+  "status": "development_candidate_not_published",
+  "wheels": [
+    {
+      "filename": "cyclonedds-11.0.1+homycloud.2-cp314-cp314-musllinux_1_2_aarch64.whl",
+      "sha256": "3d50e31c50a00912253f6f2da3d9e12e000a6c9c9edf4a352065f1eeed2537c1",
+      "size_bytes": 1365473,
+      "tag": "cp314-cp314-musllinux_1_2_aarch64",
+      "download_url": null
+    }
+  ],
+  "native_libraries": [
+    {
+      "filename": "cyclonedds.libs/libddsc-e0656f31.so.11.0.1",
+      "sha256": "9057def1ed2ab8b5d926def3b93cacb2aa3b265149f2474726cb1608a31b31c1"
+    }
+  ],
+  "validation": {
+    "self_contained_import": true,
+    "types_constructed": 4,
+    "gateway_queries": "read-only",
+    "ha_config_deps_hook": true,
+    "byte_identical_repeat_build": false
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "exit_code": 0,
+  "stdout": "{\"invalid_states\": []}\n{\"config_entry_loaded\": true, \"config_flow_passed\": true, \"duplicate_rejected\": true, \"options_form_passed\": true, \"registered_entities\": 94, \"platforms\": {\"sensor\": 15, \"select\": 5, \"climate\": 6, \"cover\": 4, \"number\": 5, \"switch\": 59}, \"reload_passed\": true, \"unload_passed\": true, \"readonly_service_rejected\": true, \"simulated_dds_writes\": 0, \"background_errors\": 0, \"optional_aws_crt_disabled_in_fixture\": true}\n",
+  "stderr": "WARNING: Your kernel does not support swap limit capabilities or the cgroup is not mounted. Memory limited without swap.\nWe found a custom integration homycloud_local which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant\nWe found a custom integration homycloud_local which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant\n",
+  "dds": "simulated",
+  "production_config_modified": false
+}

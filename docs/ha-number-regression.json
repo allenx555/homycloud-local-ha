@@ -1,0 +1,7 @@
+{
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": "WARNING: Your kernel does not support swap limit capabilities or the cgroup is not mounted. Memory limited without swap.\ntest_climate_waits_for_power_before_mode_and_maps_fan (tests.test_ha_worker.WorkerTests.test_climate_waits_for_power_before_mode_and_maps_fan) ... ok\ntest_missing_feedback_times_out_without_replay (tests.test_ha_worker.WorkerTests.test_missing_feedback_times_out_without_replay) ... ok\ntest_number_state_is_scalar_and_does_not_shadow_value_property (tests.test_ha_worker.WorkerTests.test_number_state_is_scalar_and_does_not_shadow_value_property) ... ok\ntest_pending_request_fails_on_unload_and_readonly_rejects (tests.test_ha_worker.WorkerTests.test_pending_request_fails_on_unload_and_readonly_rejects) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 9.738s\n\nOK\n",
+  "dds": "simulated",
+  "optional_aws_crt_disabled_in_fixture": true
+}

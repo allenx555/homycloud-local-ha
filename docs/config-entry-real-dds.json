@@ -1,0 +1,9 @@
+{
+  "exit_code": 0,
+  "stdout": "Processing /artifacts/wheels/cyclonedds-11.0.1+homycloud.2-cp314-cp314-musllinux_1_2_aarch64.whl\nInstalling collected packages: cyclonedds\nSuccessfully installed cyclonedds-11.0.1+homycloud.2\n{\"invalid_states\": []}\n{\"config_entry_loaded\": true, \"config_flow_passed\": true, \"duplicate_rejected\": true, \"options_form_passed\": true, \"registered_entities\": 94, \"platforms\": {\"sensor\": 15, \"cover\": 4, \"switch\": 59, \"number\": 5, \"climate\": 6, \"select\": 5}, \"reload_passed\": true, \"unload_passed\": true, \"readonly_service_rejected\": true, \"simulated_dds_writes\": 0, \"background_errors\": 0, \"optional_aws_crt_disabled_in_fixture\": true, \"real_dds\": true, \"native_control_writers_created\": 0, \"real_control_attempts\": 0}\n",
+  "stderr": "WARNING: Your kernel does not support swap limit capabilities or the cgroup is not mounted. Memory limited without swap.\nWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.\nWe found a custom integration homycloud_local which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant\nWe found a custom integration homycloud_local which has not been tested by Home Assistant. This component might cause stability problems, be sure to disable it if you experience issues with Home Assistant\n",
+  "stderr_bytes": 895,
+  "dds": "real read-only",
+  "production_config_modified": false,
+  "optional_aws_crt_disabled_in_fixture": true
+}

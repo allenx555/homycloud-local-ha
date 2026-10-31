@@ -1,0 +1,5 @@
+{
+  "exit_code": 0,
+  "stdout": "{\"coordinator_started\": true, \"devices\": 27, \"online\": 27}\n{\"worker_stopped\": true}\n",
+  "stderr": ""
+}

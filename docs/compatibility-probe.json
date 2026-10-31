@@ -1,0 +1,7 @@
+{
+  "revision": "f9df068b914c9f659d66f1fff8a83927b90b24ef",
+  "archive_sha256": "1456543d5a5b73094b202ce7c26c03d6719f5f0a9feb69f3dcd7ed19c7ac4241",
+  "exit_code": 0,
+  "stdout": "{\"python\": \"3.14.9 (main, Oct 22 2026, 08:07:04) [GCC 15.2.0]\", \"types\": {\"LanProto_ReportAttribute\": \"constructed\", \"LanProto_QueryMultiAttributes\": \"constructed\", \"LanProto_ResponseQueryMultiAttributes\": \"constructed\", \"LanProto_ChangeAttribute\": \"constructed\"}}\n",
+  "stderr": ""
+}
