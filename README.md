@@ -126,6 +126,12 @@ python -m compileall -q custom_components tools tests
 
 需要 HA 的 worker 测试会在普通 Python 中跳过；在独立 HA Python 环境中运行同一命令即可执行。这些写入测试使用模拟 DDS，不操作实际设备。
 
+## 自动打包与发布
+
+推送 `v0.2.2` 这样的版本 tag 后，GitHub Actions 会自动测试、打包并创建 Release，附带组件 ZIP、SHA256 和源码版本清单。包内版本号随 tag 更新，开发版和 RC 自动标为预发布。普通提交只构建，不发布。完整步骤见 [发布说明](docs/RELEASING.md)。
+
+组件 ZIP 不包含 DDS 原生依赖；新安装仍需按前述安装条件准备运行时。
+
 ## 后续工作
 
 [ROADMAP.md](ROADMAP.md) 记录剩余事项，重点是依赖打包、重连与资源释放测试、迁移回滚，以及分阶段真机验证。当前仍为开发候选版本。
