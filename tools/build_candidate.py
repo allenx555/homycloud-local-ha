@@ -24,7 +24,8 @@ def read_source(root, relative):
     path = root / relative
     if path.is_symlink() or not path.resolve().is_relative_to(root.resolve()):
         raise ValueError('Bundle inputs must remain inside the source tree')
-    return path.read_bytes().replace(b'\r\n', b'\n')
+    data = path.read_bytes()
+    return data if path.suffix == '.png' else data.replace(b'\r\n', b'\n')
 
 
 def build_bundle(root, wheel_dir, cache, output):
@@ -51,6 +52,7 @@ def build_bundle(root, wheel_dir, cache, output):
         'custom_components/homycloud_local/strings.json',
         'custom_components/homycloud_local/translations/zh-Hans.json',
         'custom_components/homycloud_local/protocol/schemas.json',
+        'custom_components/homycloud_local/brand/icon.png',
     }
     component = root / 'custom_components/homycloud_local'
     for folder in (component, component / 'protocol'):

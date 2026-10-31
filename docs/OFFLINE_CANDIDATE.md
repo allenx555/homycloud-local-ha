@@ -9,8 +9,8 @@
 在仓库根目录生成和核对：
 
 ```text
-python tools/build_candidate.py --output local/releases/homycloud-0.2.0-dev.zip
-python tools/build_candidate.py --verify local/releases/homycloud-0.2.0-dev.zip
+python tools/build_candidate.py --output local/releases/homycloud-0.2.1-dev.zip
+python tools/build_candidate.py --verify local/releases/homycloud-0.2.1-dev.zip
 ```
 
 输出路径必须不存在，避免覆盖已有候选包。文件时间、顺序和文本换行固定；对同一组输入重复打包应得到相同 SHA256。这不代表原生 wheel 已通过两次独立编译的字节级可复现验证。

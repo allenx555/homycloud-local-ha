@@ -48,6 +48,10 @@ class CandidateBundleTests(unittest.TestCase):
         self.assertEqual(first.read_bytes(), second.read_bytes())
         with zipfile.ZipFile(first) as archive:
             self.assertIn('tools/__init__.py', archive.namelist())
+            self.assertEqual(
+                archive.read('custom_components/homycloud_local/brand/icon.png'),
+                (self.root / 'custom_components/homycloud_local/brand/icon.png').read_bytes(),
+            )
             self.assertFalse(any('.private' in name or name.endswith('/inventory.json')
                                  for name in archive.namelist()))
             self.assertTrue(all(b'secret-home-partition' not in archive.read(name)

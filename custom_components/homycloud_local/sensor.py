@@ -1,5 +1,6 @@
 """Only declared sensors, without exposing every internal property."""
-from homeassistant.components.sensor import SensorEntity
+from homeassistant.components.sensor import SensorDeviceClass, SensorEntity
+from homeassistant.const import UnitOfTemperature
 from .entity import HomyEntity, add_platform, number
 
 
@@ -14,6 +15,8 @@ class HomySensor(HomyEntity, SensorEntity):
         self._attr_native_unit_of_measurement = extra.get('unit_of_measurement')
         self._attr_device_class = extra.get('device_class')
         self._attr_state_class = extra.get('state_class')
+        if self.device_class == SensorDeviceClass.TEMPERATURE:
+            self._attr_suggested_unit_of_measurement = UnitOfTemperature.CELSIUS
 
     @property
     def native_value(self):

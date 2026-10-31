@@ -1,10 +1,12 @@
 # HomyCloud
 
+<img src="custom_components/homycloud_local/brand/icon.png" alt="HomyCloud" width="96">
+
 **宏云智能 · Home Assistant 本地集成**
 
 通过 DDS 与宏云原网关直接通信，让 Home Assistant 读取、控制设备，无需将宏云设备重新配对，也不通过 MQTT 转发。
 
-> 开发测试版 `0.2.0-dev`。六类实体和控制反馈逻辑已实现，默认只读。正式安装发布、完整迁移及设备逐项实测尚未完成，当前不能视为可直接安装的正式版本。
+> 开发测试版 `0.2.1-dev`。六类实体和控制反馈逻辑已实现，默认只读。正式安装发布、完整迁移及设备逐项实测尚未完成，当前不能视为可直接安装的正式版本。
 
 ## 名称
 
@@ -93,6 +95,8 @@ python tools/export_inventory.py --bridge-config /private/bridge-config.json --o
 
 ## 配置与隐私
 
+温度传感器默认使用摄氏度（℃），仍可在 HA 的实体设置中按需覆盖。集成图标随 `brand/icon.png` 一起安装，使用 [HA 的本地品牌资源支持](https://contributors.home-assistant.io/core/integrations/brands/)。
+
 - `partition`：家庭私有 DDS 分区。
 - `dds_xml`：DDS 网络配置；需对应 HA 实际运行环境，不能盲目沿用仅在旧容器中存在的路径。
 - `devices`：设备 ID、名称、已确认能力及查询字段。窗帘可使用 `invert_position: true` 同时反转显示位置和位置命令，暂停命令保持原样。
@@ -124,4 +128,4 @@ python -m compileall -q custom_components tools tests
 
 ## 后续工作
 
-[ROADMAP.md](ROADMAP.md) 记录剩余事项，重点是依赖打包、重连与资源释放测试、迁移回滚，以及分阶段真机验证。当前未 commit、未 push，也未替换现用服务。
+[ROADMAP.md](ROADMAP.md) 记录剩余事项，重点是依赖打包、重连与资源释放测试、迁移回滚，以及分阶段真机验证。当前仍为开发候选版本。
