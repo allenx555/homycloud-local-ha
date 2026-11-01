@@ -1,7 +1,7 @@
 [project]
 name = "homycloud-local-ha"
-version = "0.2.1.dev0"
-description = "Experimental local HomyCloud DDS integration for Home Assistant"
+version = "0.3.0"
+description = "Local HomyCloud DDS integration for Home Assistant"
 requires-python = ">=3.13"
 [tool.ruff]
 target-version = "py313"

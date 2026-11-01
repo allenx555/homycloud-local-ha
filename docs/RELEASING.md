@@ -8,13 +8,13 @@
 
 ```sh
 git push origin main
-git tag v0.2.2
-git push origin v0.2.2
+git tag v0.3.0
+git push origin v0.3.0
 ```
 
-tag 必须以 `v` 开头并带完整三段版本号。例如 `v0.2.2` 发布正式版本，`v0.2.3-rc.1`、`v0.2.3-beta.1`、`v0.2.3-dev.1` 发布预发布版本。不要移动已经发布的 tag；修复后使用新版本号。
+tag 必须以 `v` 开头并带完整三段版本号。例如 `v0.3.0` 发布正式版本，`v0.3.1-rc.1`、`v0.3.1-beta.1`、`v0.3.1-dev.1` 发布预发布版本。不要移动已经发布的 tag；修复后使用新版本号。
 
-包内 `manifest.json` 的版本号取自 tag，并规范化为 HA 使用的 Python 版本格式，例如 `v0.2.3-rc.1` 对应 `0.2.3rc1`。工作流不会向源码分支回写版本号。
+包内 `manifest.json` 的版本号取自 tag，并规范化为 HA 使用的 Python 版本格式，例如 `v0.3.1-rc.1` 对应 `0.3.1rc1`。工作流不会向源码分支回写版本号。
 
 ## Release 附件
 
@@ -38,9 +38,13 @@ Release 发布使用 GitHub 自动提供的 `GITHUB_TOKEN`，只给发布 job `c
 
 ```sh
 python -m pip install packaging==25.0
-python tools/build_release.py --tag v0.2.2 --output local/release-check
+python tools/build_release.py --tag v0.3.0 --output local/release-check
 ```
 
 输出目录必须不存在。这个命令只生成本地文件，不上传、创建 tag 或发布 Release。
 
 参考：[GitHub 工作流触发方式](https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/trigger-a-workflow)。
+
+## HACS
+
+根目录 `hacs.json` 指定 `zip_release: true` 和 `filename: homycloud_local.zip`，HACS 从 Release 下载组件附件。发布前同步源码 manifest 和 pyproject 的版本号；首次安装仍需自行准备 DDS 运行时和私有清单，详见 README。HACS 配置要求参考 [官方文档](https://www.hacs.xyz/docs/publish/integration/)。

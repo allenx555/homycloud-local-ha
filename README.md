@@ -4,20 +4,63 @@
 
 **宏云智能 · Home Assistant 本地集成**
 
-通过 DDS 与宏云原网关直接通信，让 Home Assistant 读取、控制设备，无需将宏云设备重新配对，也不通过 MQTT 转发。
+通过局域网 DDS 与宏云原网关直接通信，在 Home Assistant 中读取和控制原配设备。无需重新配对，不依赖 MQTT 或独立桥接容器，也不使用宏云云端 API、账号或 Token。
 
-> 开发测试版 `0.2.1-dev`。六类实体和控制反馈逻辑已实现，默认只读。正式安装发布、完整迁移及设备逐项实测尚未完成，当前不能视为可直接安装的正式版本。
+当前版本 **0.3.0**，为首个公开发布版本。已在实际 HA 环境中部署并完成原 MQTT 接入迁移；支持六类实体。不同网关、固件和设备的兼容性仍需验证，发布版本号不代表所有设备功能均已完成现场测试。
 
-## 名称
+## 功能与兼容范围
 
-| 用途 | 名称 |
+当前开发依据为 **CT-105H/WH-PL** 网关及已观察到的设备协议。
+
+| HA 平台 | 功能 |
 | --- | --- |
-| Git 项目目录／仓库 | `homycloud-local-ha` |
-| HA 内部标识与集成目录 | `homycloud_local` |
-| HA 界面显示名称 | **HomyCloud** |
-| 中文说明 | 宏云智能 |
+| Switch | 灯路、空调、新风、地暖电源 |
+| Cover | 开、关、暂停、百分比；支持在设备清单中反转位置方向 |
+| Climate | 按设备实际能力提供电源、目标温度、模式和风速 |
+| Sensor | 温度及原生状态；温度默认摄氏度（℃） |
+| Number | 带范围与步长校验的数值设置 |
+| Select | 枚举设置 |
 
-## 工作方式
+- 默认**只读**，需要在添加集成或集成选项中开启“启用设备控制”后才能操作。
+- 命令具有参数校验、反馈匹配和超时处理；确认后的状态先更新到 HA，再结束等待。断线重连不会重放旧命令。
+- 缺少反馈的设备能力不会凭空补全；部分空调模式、风速和设定值仍可能不被设备接受。
+- 窗帘百分比依赖网关反馈及设备行程校准，开合方向可通过 `invert_position` 调整。
+- 倒计时、每日定时可通过 HA 自动化或辅助元素实现，不属于网关原生定时功能，本集成不会自动创建这些自动化。
+
+## 安装前准备
+
+HACS 负责安装和更新**集成文件**。首次接入还需要以下条件，完成下面四步安装并不等于设备已配置好：
+
+1. **兼容的 CycloneDDS 运行时**：目前已验证 HA 2026.10.4／Python 3.14／aarch64／musl。配套开发 wheel 的构建方法见 [DDS 构建说明](packaging/BUILDING.md)。Release ZIP 不包含 wheel，manifest 的 `requirements` 暂为空，不会自动安装 DDS；其他平台需单独构建和验证。
+2. **局域网通信**：HA 应能与网关交换 DDS 发现和数据报文；使用容器时需配置支持这些报文的网络。跨子网通信尚未验证。
+3. **私有设备清单**：需要正确的家庭 DDS `partition`、网络配置与设备字段；本版本尚不支持自动发现或从宏云账号自动导入。结构参考 [inventory.example.json](examples/inventory.example.json)，示例中的占位值不能直接使用。
+
+### 通过 HACS 安装（推荐）
+
+1. 打开 HACS → 集成 → 右上角菜单 → 自定义存储库（新版 HACS 可直接从主页面右上角菜单进入）
+2. 添加本仓库地址 `https://github.com/allenx555/homycloud-local-ha`，类别选「集成」
+3. 搜索「HomyCloud」并下载／安装
+4. 重启 Home Assistant
+
+本仓库通过 HACS **自定义存储库**安装，未声称已收录到 HACS 默认商店。HACS 使用 Release 附件 `homycloud_local.zip`，后续可在 HACS 中更新集成文件；已有兼容 DDS 运行时可继续使用。
+
+### 手动安装
+
+1. 从 [Releases](https://github.com/allenx555/homycloud-local-ha/releases) 下载 `homycloud_local.zip`。
+2. 将 ZIP 内容解压到 HA 配置目录下的 `custom_components/homycloud_local/`，确保该目录内直接包含 `manifest.json` 和 `__init__.py`。
+3. 重启 Home Assistant。
+
+升级前请备份配置；不要把私有设备清单放进 `custom_components/homycloud_local/`，避免更新时被替换。
+
+### 添加集成与启用控制
+
+1. 将私有清单保存为 HA 配置目录下的 `homycloud_local/inventory.json`。这是配置目录中的独立文件夹，与 `custom_components/homycloud_local/` 区分。
+2. 打开 **设置 → 设备与服务 → 添加集成 → HomyCloud**。
+3. 填写清单路径，默认 `homycloud_local/inventory.json`；先保持控制关闭，核对实体和状态。
+4. 确认后进入集成选项，开启“启用设备控制”。若操作报 `HomyCloud is read-only; device control is disabled`，请检查这个选项。
+5. 在 HA 的设备和实体设置中调整名称、区域；仪表盘若手动写了卡片标题，需单独修改该标题。
+
+## 工作方式与协议依据
 
 ```text
 Home Assistant
@@ -26,112 +69,54 @@ Home Assistant
             └─ 宏云原网关 → 原配设备
 ```
 
-DDS 初始化、查询、消息读取和原生资源清理在后台线程进行；HA 事件循环接收状态快照。没有控制权限时不创建控制消息发送端。启用控制后，命令有参数校验、反馈匹配和超时处理，不在断线重连后重放旧命令。
+DDS 初始化、查询、读取和资源清理在后台线程进行，HA 事件循环接收状态快照。只读模式不创建控制消息发送端。
 
-## 协议依据
+本项目参考宏云智家客户端（`com.homycloud.iot`）的设备字段和控制流程，并结合网关报文及设备反馈核对。使用的是局域网协议，不是厂家承诺长期兼容的公开云端 API，也不是官方出品。字段来源与验证边界见 [协议依据](docs/PROTOCOL.md)。
 
-参考宏云智家客户端（`com.homycloud.iot`）中的设备字段和控制流程，并结合网关 DDS 发现、报文及设备反馈核对。本集成实际通过局域网 DDS 通信，不使用宏云云端 API、账号或 Token。
+## 当前验证与限制
 
-字段与验证范围见 [协议依据](docs/PROTOCOL.md)。官方客户端行为可作为参考，但不等于这些接口是厂家承诺长期兼容的公开 API。
-
-## 设备映射
-
-当前开发依据为 CT-105H/WH-PL 网关及已观察到的协议；不代表所有宏云网关、固件或设备均兼容。
-
-| HA 平台 | 功能 |
-| --- | --- |
-| Switch | 灯路、空调、新风、地暖电源 |
-| Cover | 开、关、暂停、百分比；可在设备清单设置位置反向 |
-| Climate | 根据实际能力提供电源、目标温度、模式、风速 |
-| Sensor | 温度及原生状态 |
-| Number | 带范围和步长校验的数值设置 |
-| Select | 枚举设置 |
-
-该表说明已完成代码映射，**不等于每项能力均已实机执行验证**。缺少目标温度、模式或风速反馈的面板不会凭空增加对应能力；原网关返回的窗帘百分比也不等于已做位置校准。
-
-## 已完成的验证
-
-- 在 aarch64/musl、Python 3.14 环境中加载修复后的 DDS，构建网关使用的四种消息类型。
-- 新客户端通过真实网关的多设备只读查询验证；不创建控制 writer。
-- 独立 HA 环境通过真实网关读取状态，完成配置流程、六类实体注册、重载和卸载；状态类型检查通过，默认只读控制被拒绝，后台错误为零。
-- 修复 Number 实体的属性命名冲突，并保证确认后的状态快照先于控制调用返回；用人为延迟快照的模拟测试验证顺序。
-- 模拟 DDS 测试空调先开电源再设置模式、风速映射、反馈超时不重试，以及卸载时结束待处理命令。
-- 单元测试覆盖状态乱序、窗帘位置正反向、长行程反馈、命令类型、私密字段隔离及迁移计划。
-
-真实网关的验证保持只读。模拟控制通过不等于原生集成已对所有设备完成控制实测。证据见 [docs](docs/)。
-
-## 安装与运行条件
-
-**当前没有正式发布的一键安装包，请勿直接覆盖现用 HA。** 已生成自带 DDS 原生库的开发 wheel，当前验证目标为 CPython 3.14 / aarch64 / musllinux 1.2。其他平台仍需单独构建。
-
-已验证的开发环境：HA 2026.10.4／Python 3.14.9／aarch64／musl。同一局域网中需能与网关交换 DDS 发现与数据报文；跨子网及其他 CPU 平台尚未验证。
-
-DDS 使用配套的 11.0.1 稳定版 C 库和 Python 绑定，仅回移上游 PR #323、#327 的 Python 3.14 运行时兼容修复。固定输入的构建流程见 [DDS 构建说明](packaging/BUILDING.md)；wheel 已通过独立安装和 HA `config/deps` 加载验证，正式安装与版本升级方案仍待完成，二进制不进入本仓库。manifest 的 requirements 暂为空，避免自动安装已知不兼容的正式版本。
-
-隔离测试发现的基础镜像兼容性现象及验证边界见 [已知问题](docs/KNOWN_ISSUES.md)。
-
-已提供 [离线开发候选包说明](docs/OFFLINE_CANDIDATE.md)：包含集成、DDS wheel、离线 pip 和逐文件校验清单，排除家庭私有配置。打包与核对工具不执行安装，也不迁移现有实体。
-
-## 开发者验证流程
-
-1. 在独立环境准备已验证的 DDS 运行依赖，先验证导入与消息类型构建。
-2. 将私有设备清单保存在仓库忽略目录或 HA 的私有配置目录；格式参考 [示例](examples/inventory.example.json)。
-3. 运行只读查询：
-
-   ```text
-   python tools/readonly_probe.py --inventory /private/path/inventory.json --seconds 15
-   ```
-
-4. 准备好依赖后才将 `custom_components/homycloud_local` 放入测试 HA；在“设备与服务”添加 **HomyCloud**，指定清单路径，保持“启用设备控制”关闭。
-5. 对照旧桥状态和实体引用，再按迁移计划逐项验证。完整迁移前不要删除旧桥或 MQTT 发现记录。
-
-真实清单可从原桥配置提取，导出工具会去掉 MQTT 凭据，并拒绝覆盖已有文件：
-
-```text
-python tools/export_inventory.py --bridge-config /private/bridge-config.json --output /private/inventory.json
-```
-
-开发版可以在集成选项中显式启用控制。只读模式保留设备实体供观察，但操作服务会报“控制未启用”；不会假装操作成功。
+- 已在实际 HA 环境加载 DDS、注册六类原生实体并读取网关状态，完成原 MQTT 接入迁移；原生运行不再需要旧桥或 MQTT Broker。
+- 已验证配置流程、控制选项、重复添加拦截、重载与卸载；控制反馈顺序、空调命令顺序、超时和资源清理有模拟测试覆盖。
+- 部分真实控制已取得网关状态反馈，但设备现场动作、所有空调枚举和窗帘行程尚未逐项完成验证。状态反馈不等于现场动作已被观察确认。
+- 当前 DDS wheel 仅验证 CPython 3.14／aarch64／musllinux 1.2；尚无自动依赖分发和完整多平台安装方案。
+- 历史基础镜像异常与 DDS 构建边界见 [已知问题](docs/KNOWN_ISSUES.md)，后续事项见 [ROADMAP.md](ROADMAP.md)。
 
 ## 配置与隐私
 
-温度传感器默认使用摄氏度（℃），仍可在 HA 的实体设置中按需覆盖。集成图标随 `brand/icon.png` 一起安装，使用 [HA 的本地品牌资源支持](https://contributors.home-assistant.io/core/integrations/brands/)。
+私有清单中的主要字段：
 
-- `partition`：家庭私有 DDS 分区。
-- `dds_xml`：DDS 网络配置；需对应 HA 实际运行环境，不能盲目沿用仅在旧容器中存在的路径。
-- `devices`：设备 ID、名称、已确认能力及查询字段。窗帘可使用 `invert_position: true` 同时反转显示位置和位置命令，暂停命令保持原样。
+| 字段 | 用途 |
+| --- | --- |
+| `partition` | 家庭私有 DDS 分区 |
+| `dds_xml` | 与实际运行环境匹配的 DDS 网络配置 |
+| `devices` | 设备 ID、名称、能力及查询字段 |
+| `invert_position` | 窗帘实体配置项；同时反转显示位置和位置命令，暂停命令保持原样 |
 
-真实 partition、设备 ID、房间、网络设置及密码不应进入公共仓库。`local/`、`.private/` 已被 Git 忽略。`schemas.json` 仅包含协议消息结构。
+真实 partition、设备 ID、房间、网络设置、密码和抓包不应提交到公共仓库。`local/`、`.private/` 已被 Git 忽略，发布包也不包含家庭私有清单。协议 `schemas.json` 仅包含消息结构。
 
-## 迁移与回滚
+## 从旧 MQTT 桥迁移
 
-原 MQTT 实体与新集成的平台不同，即使 unique_id 相同也不会自动变成原实体。应先备份设备与实体注册表，保存用户名称、区域、标签、实体 ID，并核对仪表盘、定时自动化和脚本。
+新集成不会自动接管旧 MQTT 实体的名称、区域和仪表盘引用。迁移前需备份设备／实体注册表，并核对实体 ID、自动化、脚本和仪表盘。完成验证后再删除旧桥、旧 MQTT 发现记录；只有确认其他设备也不使用 MQTT，才能删除 MQTT 集成与 Broker。
 
-只读计划工具不会连接 HA 或修改注册表：
+仓库提供只读辅助工具，不会自动修改 HA：
 
-```text
+```sh
+python tools/export_inventory.py --bridge-config /private/bridge-config.json --output /private/inventory.json
 python tools/plan_migration.py --inventory /private/inventory.json --entity-registry /private/core.entity_registry --output /private/migration-plan.json
 ```
 
-计划标记可匹配项、缺失项和已有原生实体冲突，并保留用户元数据。它目前不执行迁移；设备注册表的合并、引用检查、实际迁移和完整回滚工具仍待实现。
+实际迁移与完整回滚仍需按各自环境处理，不能把迁移计划视为已执行的迁移。
 
-## 测试
+## 开发与发布
 
-无需 HA 的本地测试：
+无需 HA 的源码测试：
 
-```powershell
+```sh
+python -m pip install packaging==25.0
 python -m unittest discover -s tests -v
 python -m compileall -q custom_components tools tests
 ```
 
-需要 HA 的 worker 测试会在普通 Python 中跳过；在独立 HA Python 环境中运行同一命令即可执行。这些写入测试使用模拟 DDS，不操作实际设备。
+依赖 HA 的测试会在普通 Python 环境中跳过，模拟控制测试不会操作实际设备。真实只读查询工具和完整离线候选包说明见 [docs](docs/)。
 
-## 自动打包与发布
-
-推送 `v0.2.2` 这样的版本 tag 后，GitHub Actions 会自动测试、打包并创建 Release，附带组件 ZIP、SHA256 和源码版本清单。包内版本号随 tag 更新，开发版和 RC 自动标为预发布。普通提交只构建，不发布。完整步骤见 [发布说明](docs/RELEASING.md)。
-
-组件 ZIP 不包含 DDS 原生依赖；新安装仍需按前述安装条件准备运行时。
-
-## 后续工作
-
-[ROADMAP.md](ROADMAP.md) 记录剩余事项，重点是依赖打包、重连与资源释放测试、迁移回滚，以及分阶段真机验证。当前仍为开发候选版本。
+推送 `v0.3.0` 形式的 tag 后，GitHub Actions 会测试、生成组件 ZIP、SHA256 和版本清单，并自动发布 Release；RC 和开发版标为预发布。普通提交只构建，不发布。操作步骤见 [发布说明](docs/RELEASING.md)。

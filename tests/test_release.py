@@ -55,6 +55,19 @@ class ReleaseTests(unittest.TestCase):
             expected, name = line.split('  ')
             self.assertEqual(hashlib.sha256((output / name).read_bytes()).hexdigest(), expected)
 
+    def test_hacs_metadata_matches_release_archive(self):
+        root = Path(__file__).resolve().parents[1]
+        hacs = json.loads((root / 'hacs.json').read_text(encoding='utf-8'))
+        manifest = json.loads((root / 'custom_components/homycloud_local/manifest.json').read_text(encoding='utf-8'))
+        self.assertTrue(hacs['zip_release'])
+        self.assertEqual(hacs['filename'], 'homycloud_local.zip')
+        for key in ('documentation', 'issue_tracker', 'codeowners'):
+            self.assertTrue(manifest[key])
+        output = self.root / 'hacs-release'
+        result = build_release(self.root, output, tag='v0.3.0')
+        self.assertEqual(result['archive']['filename'], hacs['filename'])
+        self.assertEqual(result['version'], '0.3.0')
+
     def test_identical_inputs_give_identical_archives_and_metadata(self):
         first, second = self.root / 'first', self.root / 'second'
         build_release(self.root, first, tag='v1.2.3-rc.1', commit='a' * 40)
