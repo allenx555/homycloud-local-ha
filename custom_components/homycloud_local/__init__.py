@@ -5,8 +5,10 @@ async def async_setup_entry(hass, entry):
     from .const import PLATFORMS
     from .coordinator import HomyCoordinator
     from .runtime import load_runtime
+    from .schedule_links import collect_schedule_links, async_setup_schedule_links
     try:
         config = await hass.async_add_executor_job(load_runtime, hass.config.path(entry.data['inventory_path']))
+        schedule_links = collect_schedule_links(config['devices'])
         coordinator = HomyCoordinator(hass, entry, config)
         await coordinator.async_start()
     except Exception as err:
@@ -14,6 +16,7 @@ async def async_setup_entry(hass, entry):
     entry.runtime_data = coordinator
     try:
         await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
+        async_setup_schedule_links(hass, entry, schedule_links)
     except BaseException:
         await coordinator.async_stop()
         raise

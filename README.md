@@ -60,6 +60,25 @@ HACS 负责安装和更新**集成文件**。首次接入还需要以下条件�
 4. 确认后进入集成选项，开启“启用设备控制”。若操作报 `HomyCloud is read-only; device control is disabled`，请检查这个选项。
 5. 在 HA 的设备和实体设置中调整名称、区域；仪表盘若手动写了卡片标题，需单独修改该标题。
 
+### 将已有定时项归到空调设备
+
+如果已用 YAML 辅助实体和脚本实现本地定时，可在对应设备的私有清单中添加 `schedule_entities`：
+
+```json
+"schedule_entities": [
+  "input_datetime.example_ac_daily_on",
+  "input_boolean.example_ac_daily_on",
+  "input_number.example_ac_minutes",
+  "timer.example_ac",
+  "script.example_ac_start",
+  "script.example_ac_cancel"
+]
+```
+
+填写真实存在的实体 ID 后重新加载集成。这些实体会关联到对应设备并归为“配置”，在设备页集中显示，减少自动概览中的零散辅助项；显式仪表盘卡片仍可正常使用。关联在启动和辅助实体重载后自动核对。
+
+此功能不创建定时任务，不更改实体 ID、名称、时间、启用状态或自动化逻辑，也不会接管已属于其他设备或配置条目的实体。目前支持 YAML 定义的 `input_datetime`、`input_boolean`、`input_number`、`timer` 和 `script`。如曾手动收藏，仍可在概览中取消收藏。
+
 ## 工作方式与协议依据
 
 ```text
